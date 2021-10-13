@@ -71,6 +71,7 @@ class SSHKeychain {
                     shared.keypath = keypath
                     shared.failedAttempt = true
                 case PatternType.confirmation:
+                    shared.keypath = keypath
                     shared.isConfirmation = true
                 }
                 break
