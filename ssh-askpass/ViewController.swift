@@ -68,28 +68,6 @@ class ViewController: NSViewController {
     }
     
     @IBAction func ok(_ sender: Any) {
-        if !sshKeychain.keypath.isEmpty && keychainCheckBox.state == NSControl.StateValue.on {
-            let status = sshKeychain.add(password: passwordTextField.stringValue)
-
-            if status == errSecDuplicateItem {
-                ask(messageText: "Warning", informativeText: "A passphrase for \"\(sshKeychain.keypath)\" already exists in the keychain.\nDo you want to replace it?", okButtonTitle: "Replace", completionHandler: { (result) in
-                    if result == .alertFirstButtonReturn {
-                        let status = self.sshKeychain.delete()
-                        if status == errSecSuccess {
-                            self.ok(self)
-                        } else {
-                            self.keychainError(status: status)
-                            return
-                        }
-                    }
-                })
-                return
-            } else if status != errSecSuccess {
-                keychainError(status: status)
-                return
-            }
-        }
-        print(passwordTextField.stringValue)
         exit(0)
     }
     
